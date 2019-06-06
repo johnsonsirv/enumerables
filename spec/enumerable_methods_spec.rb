@@ -48,4 +48,13 @@ describe Enumerable do
     end
   end
  end
+
+ describe '#my_select' do
+   context 'no block is given' do
+    it 'should return an enumerable' do
+      expect(input_array.my_select).to be_a(Enumerator)
+    end
+   end
+
+ end
 end #end enumerable

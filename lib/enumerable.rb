@@ -13,5 +13,7 @@ module Enumerable
     self
   end
 
-  
+  def my_select
+    
+  end
 end
