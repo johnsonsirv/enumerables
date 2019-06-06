@@ -31,4 +31,21 @@ describe Enumerable do
     end
    end
  end
-end
+
+ describe '#my_each_with_index' do
+  context 'no block is given' do
+    it 'should return an enumerable' do
+      expect(input_array.my_each_with_index).to be_a(Enumerator)
+    end
+  end
+  context 'when block is given' do
+    it 'should call block once for each element in an array, passing element as paramater' do
+      input_array.my_each_with_index{ |elem| result << elem if elem.odd? }
+      expect(result).to eql([1,3])
+    end
+    it 'should return array when called on array' do
+      expect(input_array.my_each_with_index{ proc_block }).to eql(input_array)
+    end
+  end
+ end
+end #end enumerable

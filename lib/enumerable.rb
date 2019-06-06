@@ -7,6 +7,11 @@ module Enumerable
   end
 
   def my_each_with_index
-    
+    raise NoMethodError.new("undefined method") if self.is_a?(Range)
+    return self.enum_for(:my_each_with_index) unless block_given?
+    0.upto(self.size - 1) { |i| yield(i) }
+    self
   end
+
+  
 end
