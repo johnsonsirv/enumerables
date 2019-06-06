@@ -14,6 +14,10 @@ module Enumerable
   end
 
   def my_select
-    
+    raise TypeError.new("can't iterate range input") if self.is_a?(Range) && !self.begin.respond_to?(:succ)
+    return self.enum_for(:my_select) unless block_given?
+    output = []
+    self.my_each{ |elem| output << elem if yield(elem) }
+    output
   end
 end
