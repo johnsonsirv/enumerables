@@ -20,4 +20,9 @@ module Enumerable
     self.my_each{ |elem| output << elem if yield(elem) }
     output
   end
+
+  def my_all?(*args)
+    
+    true
+  end
 end

@@ -64,4 +64,23 @@ describe Enumerable do
     end
    end
  end
+
+ describe '#my_all' do
+   context 'when no block and no argument is given' do
+     it 'should add implicit block which should return true when none of the collection items are false or nil (falsey)' do
+       
+     end
+   end
+   context 'when block is given' do
+     
+   end
+   context 'when optional argument is given' do
+     
+   end
+   context 'when block and optional argument is given' do
+     it 'should ignore block and return whether argument `===` element for every collection member ' do
+       expect(%w[ant bear cat].my_all?(Integer){ |elem| elem.length > 2 }).to be_falsy
+     end
+   end
+ end
 end #end enumerable
