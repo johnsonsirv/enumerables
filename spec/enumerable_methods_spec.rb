@@ -105,6 +105,18 @@ describe Enumerable do
     it 'should pass each element of the collection to the given block and return true if the block ever returns a value.' do
       expect(["ant", 1, nil].my_any?{ |elem| elem.length > 2 }).to be_truthy
     end
+    it 'should pass each element of the collection to the given block and return true if if the block ever returns a value.' do
+      expect((-2..2).my_any?{ |elem| elem.is_a?(String) }).to be_falsy
+    end
+   end
+   context 'when block and optional argument is given' do
+    it 'should ignore block and return whether argument `===` element for every array member ' do
+      expect(["ant", "bear", "cat"].my_any?(/v/){ |elem| elem.length > 2 }).to be_falsy
+    end
+    it 'should ignore block and return whether argument `===` element for every range member ' do
+      expect((-2..2).my_all?(String){ |elem| elem.is_a?(Integer) }).to be_falsy
+    end
    end
  end
+ 
 end #end enumerable
