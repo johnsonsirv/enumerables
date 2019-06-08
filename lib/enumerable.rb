@@ -46,7 +46,7 @@ module Enumerable
   end
 
   def my_none?(*args)
-
+    return self.grep(args.first).empty? unless args.empty?
     unless block_given?
       self.my_each{ |item| return false if item }
     else
