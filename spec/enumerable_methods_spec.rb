@@ -65,22 +65,31 @@ describe Enumerable do
    end
  end
 
- describe '#my_all' do
+ describe '#my_all?' do
    context 'when no block and no argument is given' do
-     it 'should add implicit block which should return true when none of the collection items are false or nil (falsey)' do
-       
+    it 'should always return true if the block never returns false or nil' do
+      expect(input_array.my_all?).to be_truthy
+    end
+    it 'should add implicit block which should return true when none of the collection items are false or nil (falsy)' do
+       expect([nil, true, 99].my_all?).to be_falsy
      end
    end
    context 'when block is given' do
-     
-   end
-   context 'when optional argument is given' do
-     
-   end
-   context 'when block and optional argument is given' do
-     it 'should ignore block and return whether argument `===` element for every collection member ' do
-       expect(%w[ant bear cat].my_all?(Integer){ |elem| elem.length > 2 }).to be_falsy
+     it 'should pass each element of the collection to the given block and return true if the block never returns false or nil (falsy).' do
+      expect(["ant", "bear", "cat"].my_all?{ |elem| elem.length > 2 }).to be_truthy
+     end
+     it 'should pass each element of the collection to the given block and return true if the block never returns false or nil (falsy).' do
+      expect((-2..2).my_all?{ |elem| elem.is_a?(String) }).to be_falsy
      end
    end
+   context 'when block and optional argument is given' do
+     it 'should ignore block and return whether argument `===` element for every array member ' do
+      expect(["ant", "bear", "cat"].my_all?(/v/){ |elem| elem.length > 2 }).to be_falsy
+    end
+    it 'should ignore block and return whether argument `===` element for every range member ' do
+      expect((-2..2).my_all?(String){ |elem| elem.is_a?(Integer) }).to be_falsy
+    end
+   end
  end
+ 
 end #end enumerable

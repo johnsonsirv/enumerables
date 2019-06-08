@@ -22,7 +22,13 @@ module Enumerable
   end
 
   def my_all?(*args)
-    
+    return self.grep(args.first).length == self.size unless args.empty?
+    unless block_given?
+      self.my_each{ |item| return false unless item} 
+    else
+      self.my_each{ |elem| return false unless yield(elem)}
+    end
+
     true
   end
 end
