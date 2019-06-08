@@ -94,9 +94,6 @@ describe Enumerable do
  
  describe '#my_any?' do
    context 'when no block or optional argument is given' do
-     it 'should return false if no block never return true' do
-      # expect(input_array.my_any?).to be_falsy
-     end
      it 'should add implicit block which should return true if at least one of the collection members is not false or nil.' do
       expect([nil, true, 99].my_any?).to be_truthy
     end
@@ -118,5 +115,5 @@ describe Enumerable do
     end
    end
  end
- 
+
 end #end enumerable
