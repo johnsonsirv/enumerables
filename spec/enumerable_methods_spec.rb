@@ -92,4 +92,11 @@ describe Enumerable do
    end
  end
  
+ describe '#my_any?' do
+   context 'when no block or optional argument is not given' do
+     it 'should return false if no block never return true' do
+      expect(input_array.my_any?).to be_falsy
+     end
+   end
+ end
 end #end enumerable

@@ -22,7 +22,7 @@ module Enumerable
   end
 
   def my_all?(*args)
-    raise TypeError.new("can't iterate range input") if self.is_a?(Range) && !self.begin.respond_to?(:succ)
+    raise TypeError.new("can't iterate range input") if self.is_a?(Range) && !self.begin.respond_to?(:succ)    
     return self.grep(args.first).length == self.size unless args.empty?
     unless block_given?
       self.my_each{ |item| return false unless item} 
@@ -31,5 +31,9 @@ module Enumerable
     end
 
     true
+  end
+
+  def my_any?
+    
   end
 end
