@@ -46,6 +46,7 @@ module Enumerable
   end
 
   def my_none?(*args)
+    raise TypeError.new("can't iterate range input") if self.is_a?(Range) && !self.begin.respond_to?(:succ) 
     return self.grep(args.first).empty? unless args.empty?
     unless block_given?
       self.my_each{ |item| return false if item }
