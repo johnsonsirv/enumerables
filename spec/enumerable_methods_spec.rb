@@ -137,4 +137,28 @@ describe Enumerable do
    end
  end
  
+ describe '#my_count' do
+   context 'when block is not given' do
+     it 'should return number of items in enum through enumeration' do
+       expect(range_values.my_count).to eql(5)
+     end
+     it 'should return number of items in enum through enumeration' do
+       expect(input_array.my_count).to eql(4)
+     end
+   end
+   context 'when block is given' do
+     it 'should return the number of elements in array for which the block is true' do
+       expect(input_array.my_count{ |elem| elem.positive? }).to eql(2)
+     end
+     it 'should return the number of elements in range for which the block is true' do
+      expect(range_values.my_count{ |elem| elem.positive? }).to eql(2)
+    end
+   end
+   context 'when argument is given' do
+     it 'should ignore block, return the number of items in enum that are equal to the args are counted' do
+       expect([1,2,4,2, 2].my_count(2)).to eql(3)
+     end
+   end
+ end
+
 end #end enumerable

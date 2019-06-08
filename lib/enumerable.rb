@@ -56,4 +56,22 @@ module Enumerable
 
     true
   end
+
+  def my_count(*args)
+    
+    count = 0
+    return self.my_select{ |elem| yield elem }.length if block_given?
+    # if block_given?
+    #   self.my_each{ |elem| count += 1 if yield(elem) }
+    # els
+    return self.my_select{ |elem| elem.eql? args.first}.length unless args.empty?
+   
+    # if args.empty?
+    #   0.upto(self.size - 1) { count += 1}
+    # else
+    #   self.my_each{ |elem| count += 1 if elem.eql? args.first}
+    # end
+    
+    self.size
+  end
 end
