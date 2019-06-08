@@ -44,4 +44,15 @@ module Enumerable
 
     false
   end
+
+  def my_none?(*args)
+
+    unless block_given?
+      self.my_each{ |item| return false if item }
+    else
+      self.my_each{ |elem| return false if yield(elem)}
+    end
+
+    true
+  end
 end

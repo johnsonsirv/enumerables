@@ -116,4 +116,25 @@ describe Enumerable do
    end
  end
 
+ describe '#my_none?' do
+   context 'when no block or optional argument is given' do
+    it 'should add implicit block which should return false if at least one of the collection members is true(not falsy)' do
+       expect([nil, false, true].my_none? ).to be_falsy
+    end
+   end
+   context 'when block is given' do
+    it 'should pass each element of the collection to the given block and return false if the block ever returns a truthy.' do
+      expect(["ant", "bear", "cat"].my_none?{ |elem| elem.length >= 4 }).to be_falsy
+    end
+   end
+   context 'when block and optional argument is given' do
+    it 'should ignore block and return whether argument `===` element for every array member ' do
+      expect([1, 3.14, 42].my_none?(Float){ |elem| elem > 2 }).to be_falsy
+    end
+    it 'should ignore block and return whether argument `===` element for every array member ' do
+      expect(["ant", "bear", "cat"].my_none?(/d/){ |elem| elem.length > 2 }).to be_truthy
+    end
+   end
+ end
+ 
 end #end enumerable
