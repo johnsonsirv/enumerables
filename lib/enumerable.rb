@@ -37,7 +37,7 @@ module Enumerable
     unless block_given?
       self.my_each{ |item| return true if item }
     else
-      self.my_each{ |elem| return true if ess yield(elem)}
+      self.my_each{ |elem| return true if yield(elem)}
     end
 
     false
