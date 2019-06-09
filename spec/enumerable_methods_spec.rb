@@ -162,11 +162,16 @@ describe Enumerable do
  end
 
  describe '#my_inject' do
+    context 'when no block is given' do
+      it 'should raise a LocalJumpError' do
+        expect { [2,4,5].my_inject }.to raise_error(LocalJumpError)
+      end
+    end
    context 'it combines all elements of enum by applying a binary operation, specified by a block or a symbol that names a method or operator' do
      it 'it passes an accumulator value(memo) and each element in enum to the block' do
-       expect([2,4,5].my_inject).to eql(40)
+       expect([2,4,5].my_inject{ || }).to eql(40)
      end
    end
  end
- 
+
 end #end enumerable
