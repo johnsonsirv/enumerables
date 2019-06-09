@@ -68,8 +68,11 @@ module Enumerable
   def my_inject(*initial_accum)
     raise LocalJumpError.new("no block given") unless block_given?
     
+    start = initial_accum.empty? ? 1 : 0
+    
     acc = initial_accum.empty? ? self.to_a.first : initial_accum
-    0.upto(self.size - 1) { |indx| acc = yield(acc, self.to_a[indx])}
+    start.upto(self.size - 1) { |indx| acc = yield(acc, self.to_a[indx])}
+
     acc
   end
 end
