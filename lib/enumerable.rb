@@ -18,6 +18,7 @@ module Enumerable
     return self.enum_for(:my_select) unless block_given?
     output = []
     self.my_each{ |elem| output << elem if yield(elem) }
+
     output
   end
 
@@ -62,5 +63,9 @@ module Enumerable
     return self.my_select{ |elem| elem.eql? args.first}.length unless args.empty?
     
     self.size
+  end
+
+  def my_inject
+    
   end
 end
