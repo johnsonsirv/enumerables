@@ -76,10 +76,11 @@ module Enumerable
     acc
   end
 
-  def my_map
+  def my_map(*proc)
+    raise TypeError.new("argument expected to be proc - &proc") unless proc.first.is_a?(Proc)
     return self.enum_for(:my_map) unless block_given?
     output = []
-    
+    self.my_each{ |elem| output << yield(elem) }
     output
   end
 end

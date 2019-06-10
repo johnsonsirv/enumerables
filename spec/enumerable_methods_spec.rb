@@ -192,6 +192,18 @@ describe Enumerable do
      it 'should return an array' do
        expect(input_array.my_map { |elem| elem * elem }).to be_a(Array)
      end
+     it 'it returns a new array containing the values returned by the block.' do
+       expect((1..4).my_map { |i| i*i }).to eql([1, 4, 9, 16])
+     end
+   end
+   context 'when a proc is given' do
+    it 'should raise TypeError if optional argument provided is not a proc' do
+      expect { input_array.my_map(4) }.to raise_error(TypeError)
+    end
+     it 'should ignore block and return a new array containing the values returned by the proc' do
+      test_proc = Proc.new { |i| i* i }
+      expect(input_array.my_map(&test_proc)).to eql([36, 16, 81, 1])
+     end
    end
  end
 
