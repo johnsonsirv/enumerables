@@ -77,7 +77,7 @@ module Enumerable
   end
 
   def my_map
-    
+    return self.enum_for(:my_map) unless block_given?
   end
 end
 
