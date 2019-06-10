@@ -67,12 +67,16 @@ module Enumerable
 
   def my_inject(*initial_accum)
     raise LocalJumpError.new("no block given") unless block_given?
-    
+    raise TypeError.new("can't iterate range input") if self.is_a?(Range) && !self.begin.respond_to?(:succ)
     start = initial_accum.empty? ? 1 : 0
     
-    acc = initial_accum.empty? ? self.to_a.first : initial_accum
+    acc = initial_accum.empty? ? self.to_a.first : initial_accum.first
     start.upto(self.size - 1) { |indx| acc = yield(acc, self.to_a[indx])}
 
     acc
   end
+end
+
+def multiply_els
+  
 end

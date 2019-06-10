@@ -167,9 +167,17 @@ describe Enumerable do
         expect { [2,4,5].my_inject }.to raise_error(LocalJumpError)
       end
     end
-   context 'it combines all elements of enum by applying a binary operation, specified by a block or a symbol that names a method or operator' do
+   context 'when block is given' do
      it 'it passes an accumulator value(memo) and each element in enum to the block' do
        expect([2,4,5].my_inject{ |acc, elem| acc * elem }).to eql(40)
+     end
+     it 'it passes an accumulator value(memo) and each element in enum to the block' do
+      expect((5..10).my_inject{ |acc, elem| acc * elem }).to eql(151200)
+    end
+   end
+   context 'when block is given and initial accumulator value(memo) is explicitly given' do
+     it 'should set initialize accumulator with value given' do
+      expect([2,4,5].my_inject(5){ |acc, elem| acc * elem }).to eql(200)
      end
    end
  end
