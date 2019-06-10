@@ -182,4 +182,13 @@ describe Enumerable do
    end
  end
 
+ describe '#my_map' do
+   context 'when no block is given' do
+    it 'should return an enumerable' do
+      expect(input_array.my_map).to be_a(Enumerator)
+    end
+   end
+   
+ end
+
 end #end enumerable

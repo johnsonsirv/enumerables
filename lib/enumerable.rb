@@ -75,6 +75,10 @@ module Enumerable
 
     acc
   end
+
+  def my_map
+    
+  end
 end
 
 def multiply_els(arr)
