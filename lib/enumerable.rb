@@ -78,6 +78,9 @@ module Enumerable
 
   def my_map
     return self.enum_for(:my_map) unless block_given?
+    output = []
+    
+    output
   end
 end
 

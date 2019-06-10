@@ -188,7 +188,11 @@ describe Enumerable do
       expect(input_array.my_map).to be_a(Enumerator)
     end
    end
-   
+   context 'when block is given' do
+     it 'should return an array' do
+       expect(input_array.my_map { |elem| elem * elem }).to be_a(Array)
+     end
+   end
  end
 
 end #end enumerable
