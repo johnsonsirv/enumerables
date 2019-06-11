@@ -198,7 +198,7 @@ describe Enumerable do
    end
    context 'when a proc is given' do
     it 'should raise TypeError if optional argument provided is not a proc' do
-      expect { input_array.my_map(4) }.to raise_error(TypeError)
+      expect { input_array.my_map({}) }.to raise_error(TypeError)
     end
      it 'should ignore block and return a new array containing the values returned by the proc' do
       test_proc = Proc.new { |i| i* i }
