@@ -1,7 +1,7 @@
 # Ruby Enumerable Methods
 The Enumerable module that gets mixed into the Array and Hash classes (among others) provides you with lots of handy iterator methods.
 In this project I re-built some of those methods to demonstrate their internal workings. The implementation covers basic operations
-of these iterators, and does not take into account certain complexities.
+of these iterators, and does not take into account certain complexities. TDD approach was adopted. and tests where written using Rspec framework.
 
 See [Documentation](https://ruby-doc.org/core-2.5.1/Enumerable.html) for complete details on Ruby Enumerables.
 
