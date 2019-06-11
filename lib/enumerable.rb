@@ -91,7 +91,6 @@ module Enumerable
 
     output = []
     self.my_each { |elem| output << yield(elem) }
-    
     output
   end
 end
