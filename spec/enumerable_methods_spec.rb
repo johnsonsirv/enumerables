@@ -180,6 +180,11 @@ describe Enumerable do
       expect([2,4,5].my_inject(5){ |acc, elem| acc * elem }).to eql(200)
      end
    end
+   context 'when symbol is given' do
+     it 'should pass each element in the collection to the named method of memo and return result as new memo' do
+       expect([2,4,5].my_inject(:+)).to eql(11)
+     end
+   end
  end
 
  describe '#my_map' do
