@@ -75,13 +75,24 @@ module Enumerable
   end
 
   def my_inject(*initial_accum)
-    raise LocalJumpError.new('no block given') unless block_given?
+    raise LocalJumpError.new('no block given') unless block_given? || initial_accum.first.is_a?(Symbol)
     raise TypeError.new("can't iterate range input") if self.is_a?(Range) && !self.begin.respond_to?(:succ)
-
-    start = initial_accum.empty? ? 1 : 0
-    acc = initial_accum.empty? ? self.to_a.first : initial_accum.first
-    start.upto(self.size - 1) { |indx| acc = yield(acc, self.to_a[indx]) }
-
+    self.define_singleton_method(:named_method) do |data, binary_op|
+      acc = data.first
+      1.upto(data.size - 1) do |i|
+        acc = acc.send(binary_op, data[i])
+      end
+      acc
+    end
+    #respond to symbol method call 
+    return method(:named_method).call(self.to_a, initial_accum.first.to_s) if initial_accum.first.is_a?(Symbol)
+    
+    if block_given?
+      start = initial_accum.empty? ? 1 : 0
+      acc = initial_accum.empty? ? self.to_a.first : initial_accum.first
+      start.upto(self.size - 1) { |indx| acc = yield(acc, self.to_a[indx]) }
+    end
+    
     acc
   end
 
