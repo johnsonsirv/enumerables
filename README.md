@@ -48,6 +48,10 @@ The custom methods covered in this project include:
 ```sh
 $ git clone https://github.com/johnsonsirv/enumerables.git
 ```
+
+### Usage
+See some examples on how to use the methods
+
 > navigate ```cd ``` into the cloned directory
 
 ```sh
@@ -58,7 +62,6 @@ $ cd enumerable
 ```sh
  require "[RELATIVE_PATH]/enumerable"
 ```
-> See some examples on how to use the methods
 ```sh
 arr = [2,3,4,5].my_each {|val| puts "#{val} apples!"}
 
